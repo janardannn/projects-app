@@ -7,5 +7,5 @@ export type PartnerType = {
     email: string,
     upiId: string,
     rating: number,
-    coursesSelling: string[],
+    coursesSelling: string[]
 }

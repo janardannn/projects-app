@@ -10,7 +10,7 @@ export type CourseType = {
 export const coursesSelector = selector({
     key: "coursesSelector",
     get: async () => {
-        const response = await axios.get(API_URL + "/courses");
+        const response = await axios.get(API_URL + "/course/get-all-courses");
         return response.data.courses as CourseType[];
     }
 });

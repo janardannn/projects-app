@@ -30,6 +30,10 @@ const userSchema = new mongoose.Schema<UserType>({
     },
 
     coursesPurchased: [String],
+
+
+}, {
+    timestamps: true
 });
 
 export const usersModel = mongoose.model("Users", userSchema);

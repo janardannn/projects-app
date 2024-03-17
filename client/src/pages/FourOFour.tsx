@@ -1,7 +1,10 @@
+import FourOFourImg from "../assets/404.png"
+
 export default function () {
     return (
         <div>
-            <img src="https://png.pngtree.com/png-clipart/20210308/original/pngtree-commercial-elements-available-for-404-pages-png-image_5771809.jpg" alt="404" width={600} />
+            <img src={FourOFourImg} alt="404" className="w-[275px] lg:w-[435px]" />
+            <div className="text-center text-xl">Uhhhh Ohhh!</div>
         </div>
     )
 }

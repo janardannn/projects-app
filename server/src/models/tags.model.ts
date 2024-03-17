@@ -12,6 +12,8 @@ const tagSchema = new mongoose.Schema<TagType>({
         type: String,
         required: true,
     },
+}, {
+    timestamps: true
 });
 
 export const tagsModel = mongoose.model("Tags", tagSchema);

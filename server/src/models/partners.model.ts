@@ -47,7 +47,9 @@ const partnerSchema = new mongoose.Schema<PartnerType>({
         type: Number,
     },
 
-    coursesSelling: [String],
+    coursesSelling: [String]
+}, {
+    timestamps: true
 });
 
 export const partnersModel = mongoose.model("Partners", partnerSchema);

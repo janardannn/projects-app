@@ -1,9 +1,11 @@
 import { Route, Routes } from "react-router-dom"
-import Course from "./pages/Course"
+import Course from "./pages/content/Course"
 import TopBar from "./components/topbar/TopBar";
-import Projects from "./pages/Projects";
-import Product from "./pages/Product";
+import ErrorFeatureBar from "./components/error-feature-bar/ErrorFeatureBar";
+import Projects from "./pages/content/Projects";
+import Product from "./pages/content/Product";
 import FourOFour from "./pages/FourOFour";
+import BottomBar from "./components/bottombar/BottomBar";
 
 export const API_URL = "http://localhost:3000";
 
@@ -11,6 +13,8 @@ function App() {
   return (
     <>
       <TopBar />
+      <ErrorFeatureBar />
+      <div className="mb-12"></div>
       <div className="flex justify-center">
         <div className="flex w-screen lg:w-[63vw] justify-center">
           <Routes>
@@ -21,6 +25,7 @@ function App() {
           </Routes>
         </div>
       </div>
+      <BottomBar />
     </>
   )
 }

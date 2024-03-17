@@ -15,7 +15,7 @@ import { usersModel } from './models/users.model';
 // import middlewares
 
 // import routes
-
+import courseRoutes from './routes/courses.routes';
 // env variables
 const PORT = process.env.PORT || 3000;
 const MONGODB_URL = process.env.MONGODB_URL as string
@@ -63,11 +63,13 @@ app.get('/', (req: express.Request, res: express.Response) => {
     })
 })
 
+// custom routes
+
+app.use("/course", courseRoutes)
+
 app.listen(PORT, () => {
     console.log('Server is running on port ' + PORT);
 })
-
-
 
 
 

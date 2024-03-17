@@ -17,11 +17,14 @@ const projectSchema = new mongoose.Schema<ProjectType>({
     },
     title: { type: String, required: true },
     description: { type: String, required: true },
+    course: { type: String, required: true },
     tags: [String],
     price: { type: String, required: true },
     partner: { type: String, required: true },
     oneTime: { type: Boolean, required: true },
     phases: [phaseSchema],
+}, {
+    timestamps: true
 });
 
 export const projectsModel = mongoose.model("Projects", projectSchema);

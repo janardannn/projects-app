@@ -1,25 +1,6 @@
 import mongoose from "mongoose";
-import { SubjectType, SemesterType, CourseType } from "../types/course.type";
+import { CourseType } from "../types/course.type";
 
-const subjectSchema = new mongoose.Schema<SubjectType>({
-    subject: {
-        type: String,
-        required: true,
-    },
-    banner: {
-        type: String,
-        required: true,
-    },
-    projectIds: [String],
-});
-
-const semesterSchema = new mongoose.Schema<SemesterType>({
-    semester: {
-        type: String,
-        required: true,
-    },
-    subjects: [subjectSchema],
-});
 
 const courseSchema = new mongoose.Schema<CourseType>({
     course: {
@@ -31,7 +12,9 @@ const courseSchema = new mongoose.Schema<CourseType>({
         type: String,
         required: true,
     },
-    semesters: [semesterSchema],
+    projects: [String]
+}, {
+    timestamps: true
 });
 
 export const coursesModel = mongoose.model("Courses", courseSchema);
