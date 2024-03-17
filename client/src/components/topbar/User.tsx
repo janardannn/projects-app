@@ -17,7 +17,7 @@ const UserSvg = (size: number) => {
         </svg>
     )
 }
-interface UserProps {
+type UserProps = {
     username: string;
 }
 

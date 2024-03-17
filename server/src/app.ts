@@ -21,6 +21,13 @@ const PORT = process.env.PORT || 3000;
 const MONGODB_URL = process.env.MONGODB_URL as string
 const JWT_SECRET = process.env.JWT_SECRET as string
 
+export const STATUS_CODES = {
+    OK: 200,
+    BAD_REQUEST: 400,
+    UNAUTHORIZED: 401,
+    NOT_FOUND: 404,
+    INTERNAL_SERVER_ERROR: 500
+}
 
 // initialize app
 const app = express();

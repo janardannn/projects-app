@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom"
 
 export default function () {
-    const { subject } = useParams()
+    const { course } = useParams()
 
     return <div>
-        {subject} Projects Page
+        {course} Projects Page
     </div>
 }
