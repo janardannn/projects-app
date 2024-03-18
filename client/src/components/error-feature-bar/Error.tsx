@@ -11,7 +11,7 @@ export default function () {
     return <button onClick={handleClick}>
         <div className="flex items-center border rounded-md p-[4px] hover:bg-orange-700 ">
             <div className="mr-1">
-                <img src={Error} width={40} className="rounded-md" />
+                <img src={Error} className="w-[30px] lg:w-[40px] rounded-md" />
             </div>
             <div>
                 Report an Error

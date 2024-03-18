@@ -24,19 +24,19 @@ export type ProjectType = {
     phases?: PhaseType[]
 }
 
-export const projectsSelector = selector({
-    key: "projectsSelector",
-    get: async () => {
-        const response = await axios.get(API_URL + "/project/get-all-projects-of-course", {
-            params: {
-                course: "CSE"
-            }
-        });
-        return response.data.projects as ProjectType[];
-    }
-});
+// export const projectsSelector = selector({
+//     key: "projectsSelector",
+//     get: async () => {
+//         const response = await axios.get(API_URL + "/project/get-all-projects-of-course", {
+//             params: {
+//                 course: "CSE"
+//             }
+//         });
+//         return response.data.projects as ProjectType[];
+//     }
+// });
 
 export const projectsAtom = atom<ProjectType[]>({
     key: "projectsAtom",
-    default: projectsSelector
+    default: []
 });

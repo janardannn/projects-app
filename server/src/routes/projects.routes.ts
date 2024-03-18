@@ -1,7 +1,8 @@
 import { createProject, getAllProjectsOfCourse, getProject } from "../controllers/projects.controller"
 import { STATUS_CODES } from "../app"
-
 // import logging and other middlwares here
+// import { LogUserActivity } from "../middlewares/logging"
+
 import express from "express"
 
 const router = express.Router()

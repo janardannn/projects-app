@@ -11,7 +11,7 @@ export default function () {
     return <button onClick={handleClick}>
         <div className="flex items-center border rounded-md p-[4px] hover:bg-green-700 ">
             <div className="mr-1">
-                <img src={Feature} width={40} className="rounded-md" />
+                <img src={Feature} className="w-[30px] lg:w-[40px] rounded-md" />
             </div>
             <div>
                 Request a Feature

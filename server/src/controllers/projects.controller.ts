@@ -58,7 +58,7 @@ export const createProject = async (req: express.Request, res: express.Response)
 
 export const getAllProjectsOfCourse = async (req: express.Request, res: express.Response) => {
     try {
-        const { course } = req.params
+        const { course } = req.query as { course: string }
 
         if (await checkIfCourseExists(course)) {
             const allProjects = await projects.find({ course })

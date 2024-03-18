@@ -17,6 +17,7 @@ import { usersModel } from './models/users.model';
 // import routes
 import courseRoutes from './routes/courses.routes';
 import projectRoutes from './routes/projects.routes';
+import tagRoutes from './routes/tags.routes';
 
 // env variables
 const PORT = process.env.PORT || 3000;
@@ -69,6 +70,7 @@ app.get('/', (req: express.Request, res: express.Response) => {
 
 app.use("/course", courseRoutes)
 app.use("/project", projectRoutes)
+app.use("/tag", tagRoutes)
 
 app.listen(PORT, () => {
     console.log('Server is running on port ' + PORT);

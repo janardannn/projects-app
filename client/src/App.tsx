@@ -14,10 +14,14 @@ function App() {
     <>
       <div className="min-h-[90vh]">
         <TopBar />
+
+        {/* spacer for mobile devices */}
+        <div className="mb-8 sm:mb-0"></div>
+
         <ErrorFeatureBar />
         <div className="mb-12"></div>
         <div className="flex justify-center">
-          <div className="flex w-screen lg:w-[63vw] justify-center">
+          <div className="flex w-screen custom:w-[1165px] justify-center">
             <Routes>
               <Route path="/" element={<Course />} />
               <Route path="/:course/projects" element={<Projects />} />

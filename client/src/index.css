@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer base {
-  .custom-class {
-    css-values;
+@layer base {
+  .project-card-bg {
+    background-color: rgba(31, 41, 55, 0.37);
   }
-} */
+}
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
