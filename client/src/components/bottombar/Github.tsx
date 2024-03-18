@@ -18,7 +18,7 @@ const githubSvg = (size: number) => {
 export default function () {
     return (
         <div className="flex justify-center">
-            <p className="flex items-center text-sm text-center mt-[9rem] mb-8">Made by <a href="https://github.com/janardannn/"><div className="flex items-center ml-2">{githubSvg(25)}/janardannn</div></a></p>
+            <p className="flex items-center text-sm text-center">Made by <a href="https://github.com/janardannn/"><div className="flex items-center ml-2">{githubSvg(25)}/janardannn</div></a></p>
         </div>
     )
 }
