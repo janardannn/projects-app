@@ -1,5 +1,6 @@
 .env
-.Identifier 
+*.Identifier 
+
 # Logs
 logs
 *.log
