@@ -10,6 +10,7 @@ export type ProjectType = {
     projectId: string,
     title: string,
     description: string,
+    type: string,
     course: string,
     tags: string[],
     price: string,

@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 import { PhaseType, ProjectType } from "../types/project.type";
 
 const phaseSchema = new mongoose.Schema<PhaseType>({
-    phase: { type: String, required: true },
-    price: { type: String, required: true },
+    phase: { type: String },
+    price: { type: String },
     description: { type: String },
-    deliverables: { type: String, required: true },
-    currentlyAvailable: { type: Boolean, required: true },
+    deliverables: { type: String },
+    currentlyAvailable: { type: Boolean },
 });
 
 const projectSchema = new mongoose.Schema<ProjectType>({
@@ -17,12 +17,13 @@ const projectSchema = new mongoose.Schema<ProjectType>({
     },
     title: { type: String, required: true },
     description: { type: String, required: true },
+    type: { type: String, required: true },
     course: { type: String, required: true },
-    tags: [String],
+    tags: { type: [String], required: true },
     price: { type: String, required: true },
     partner: { type: String, required: true },
     oneTime: { type: Boolean, required: true },
-    phases: [phaseSchema],
+    phases: { type: [phaseSchema] },
 }, {
     timestamps: true
 });

@@ -41,7 +41,9 @@ export const createCourse = async (req: express.Request, res: express.Response) 
     }
 
     catch (err) {
-        res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json("Failed to create course")
+        res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({
+            "msg": err
+        })
     }
 }
 
