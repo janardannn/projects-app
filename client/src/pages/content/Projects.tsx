@@ -46,7 +46,7 @@ export default function () {
             <div className="custom:flex custom:flex-wrap custom:justify-start custom:items-center">
                 {
                     projects.map((project, index) => {
-                        return <ProjectCard key={index} {...project} />
+                        return <ProjectCard key={project.projectId} projectId={project.projectId} title={project.title} type={project.type} partner={project.partner} price={project.price} tags={project.tags} />
                     })
                 }
             </div>

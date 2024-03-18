@@ -57,3 +57,22 @@ export const getTags = async (req: express.Request, res: express.Response) => {
         })
     }
 }
+
+export const modifyTag = async (req: express.Request, res: express.Response) => {
+    try {
+        const { tag, color } = req.body
+
+        if (await checkIfTagExists(tag)) {
+            await tags.updateOne({ tag }, { color })
+            res.status(STATUS_CODES.OK).json({ msg: "Tag updated successfully" })
+        }
+        else {
+            res.status(STATUS_CODES.BAD_REQUEST).json({ msg: "Tag does not exist" })
+        }
+    }
+    catch (err) {
+        res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({
+            "msg": err
+        })
+    }
+}

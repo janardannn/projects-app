@@ -1,4 +1,6 @@
 import React from "react"
+import { useParams, useNavigate } from "react-router-dom"
+
 import Tag from "../tags/Tag"
 
 
@@ -31,19 +33,28 @@ const typeCard = (type: string) => {
 }
 
 type ProjectCardProps = {
+    projectId: string,
     title: string,
     type: string,
     partner: string,
     price: string,
     tags: string[]
 }
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, type, partner, price, tags }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ projectId, title, type, partner, price, tags }) => {
     // title = "Open source weather website using ReactJS for frontend, NodeJS for backend and MongoDB for database Open source weather website using ReactJS for frontend"
     // Characters 154 Words 23 Lines 2
     // type = "research paper"
+
+    const { course } = useParams()
+    const navigate = useNavigate()
+
+    const handleProjectClick = () => {
+        navigate(`/${course}/projects/p/${projectId}`)
+    }
+
     return <div className="m-4">
-        <button>
-            <div className="w-[327px] md:w-[350px] border rounded-md mb-8 p-2 hover:scale-[1.025]">
+        <button onClick={handleProjectClick}>
+            <div className="w-[327px] md:w-[350px] border rounded-md mb-8 p-2 hover:scale-[1.025] project-card-bg-2">
                 <div className="text-left text-xl mb-6 h-[165px]">{title}</div>
                 <div className={typeCard(type)}>{type}</div>
                 <div className="flex justify-between mb-4 pr-2 project-card-bg rounded-md p-2">
@@ -63,14 +74,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, type, partner, price, 
                         </div>
                     </div>
                 </div>
-                <div className="h-[125px] text-left">
+                <div className="h-[137px] text-left">
                     <div className="text-left mb-2">Tags:</div>
                     <div className="flex flex-wrap">
-                        <Tag tag={"Blockchain"} />
-                        <Tag tag={"Python"} />
-                        <Tag tag={"Web Development"} />
-                        <Tag tag={"Machine Learning"} />
-                        <Tag tag={"App Development"} />
+                        {
+                            tags.map((tag, index) => {
+                                return <Tag key={index} tag={tag} />
+                            })
+                        }
                     </div>
                 </div>
             </div>

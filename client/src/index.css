@@ -6,6 +6,10 @@
   .project-card-bg {
     background-color: rgba(31, 41, 55, 0.37);
   }
+
+  .project-card-bg-2 {
+    background-color: rgba(36, 27, 40, 0.217);
+  }
 }
 
 :root {

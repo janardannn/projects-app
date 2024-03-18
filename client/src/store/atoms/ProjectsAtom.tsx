@@ -1,7 +1,7 @@
 import { atom, selector } from "recoil"
-import axios from "axios"
+// import axios from "axios"
 
-import { API_URL } from "../../App"
+// import { API_URL } from "../../App"
 
 type PhaseType = {
     phase: string,
