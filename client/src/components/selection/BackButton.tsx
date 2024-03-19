@@ -27,13 +27,14 @@ const BackButton: React.FC<BackProps> = ({ title, location }) => {
 
     const handleBackClick = () => {
         navigate(location)
+        // console.log("click")
     }
 
     return (
-        <button className="bg-slate-800 py-1 px-4 rounded-md hover:border" onClick={handleBackClick}>
+        <button className="bg-slate-800 ml-4 py-1 px-4 rounded-md hover:border" onClick={handleBackClick}>
             <div className="flex">
-                <div className="h-[30px] flex items-end mr-2 pb-1">{ArrowSvg(19)}</div>
-                <div className="h-[30px] flex items-end">{title}</div>
+                <div className="flex items-end mr-2 pb-1">{ArrowSvg(19)}</div>
+                <div className="flex items-end">{title}</div>
             </div>
         </button>
     )

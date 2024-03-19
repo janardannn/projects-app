@@ -6,6 +6,7 @@ import axios from "axios"
 import { projectsAtom } from "../../store/atoms/ProjectsAtom"
 import { API_URL } from "../../App"
 import ProjectCard from "../../components/projects/ProjectCard"
+import BackButton from "../../components/selection/BackButton"
 
 export default function () {
     const { course } = useParams()
@@ -42,6 +43,7 @@ export default function () {
     return <div>
         <div className="text-center text-2xl">{course} Projects</div>
         <div className="m-6"></div>
+        <BackButton title={"Course"} location={"/"} />
         <div className="custom:flex custom:justify-center custom:items-center">
             <div className="custom:flex custom:flex-wrap custom:justify-start custom:items-center">
                 {
