@@ -6,7 +6,6 @@ import Loader from "../../components/Loader"
 import { CourseType, coursesAtom } from "../../store/atoms/CoursesAtom"
 import { userSelectionAtom } from "../../store/atoms/UserSelectionAtom"
 
-
 export default function () {
 
     const navigate = useNavigate()

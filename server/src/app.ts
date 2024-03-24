@@ -11,6 +11,7 @@ import { partnersModel } from './models/partners.model';
 import { projectsModel } from './models/projects.model';
 import { tagsModel } from './models/tags.model';
 import { usersModel } from './models/users.model';
+import { announcementModel } from './models/announcement.model';
 
 // import middlewares
 
@@ -58,6 +59,7 @@ const partners = partnersModel
 const projects = projectsModel
 const tags = tagsModel
 const users = usersModel
+const announcements = announcementModel
 
 
 app.get('/', (req: express.Request, res: express.Response) => {
@@ -71,6 +73,24 @@ app.get('/', (req: express.Request, res: express.Response) => {
 app.use("/course", courseRoutes)
 app.use("/project", projectRoutes)
 app.use("/tag", tagRoutes)
+
+
+// test admin routes
+app.get('/admin/announcements', async (req: express.Request, res: express.Response) => {
+    const announcements = await announcementModel.find()
+    res.status(200).json({
+        "type": announcements[0].type,
+        "message": announcements[0].message
+    })
+})
+app.post('/admin/announcements', async (req: express.Request, res: express.Response) => {
+    const { type, message } = req.body
+    const newAnnouncement = new announcementModel({ type, message })
+    await newAnnouncement.save()
+    res.status(200).json({
+        msg: "Announcement created successfully"
+    })
+})
 
 app.listen(PORT, () => {
     console.log('Server is running on port ' + PORT);

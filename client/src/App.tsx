@@ -6,6 +6,7 @@ import Projects from "./pages/content/Projects";
 import Product from "./pages/content/Product";
 import FourOFour from "./pages/FourOFour";
 import BottomBar from "./components/bottombar/BottomBar";
+import AnnouncementBar from "./components/announcement-bar/AnnouncementBar";
 
 export const API_URL = "http://localhost:3000";
 
@@ -17,8 +18,10 @@ function App() {
 
         {/* spacer for mobile devices */}
         <div className="mb-8 sm:mb-0"></div>
-
         <ErrorFeatureBar />
+
+        <AnnouncementBar />
+
         <div className="mb-12"></div>
         <div className="flex justify-center">
           <div className="flex w-screen custom:w-[1165px] justify-center">
