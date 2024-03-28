@@ -58,7 +58,7 @@ export default function () {
     }
 
     const onErrorChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setErrorReport({ ...errorReport, description: e.target.value })
     }
 

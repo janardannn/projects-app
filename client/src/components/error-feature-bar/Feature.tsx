@@ -58,7 +58,7 @@ export default function () {
     }
 
     const onFeatureSuggestionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setFeatureSuggestion({ ...featureSuggestion, description: e.target.value })
     }
 
