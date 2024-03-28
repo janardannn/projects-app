@@ -21,6 +21,24 @@ const checkIfProjectExists = async (projectId: string): Promise<boolean> => {
     }
 }
 
+export const getProjectsCountOfCourse = async (req: express.Request, res: express.Response) => {
+    try {
+        const { course } = req.query as { course: string }
+        if (await checkIfCourseExists(course)) {
+            const count = await projects.countDocuments({ course })
+            res.status(STATUS_CODES.OK).json({ count })
+        }
+        else {
+            res.status(STATUS_CODES.NOT_FOUND).json({ msg: "Course not found" })
+        }
+    }
+    catch (err) {
+        res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({
+            "msg": err
+        })
+    }
+}
+
 export const createProject = async (req: express.Request, res: express.Response) => {
 
     try {
@@ -64,7 +82,35 @@ export const getAllProjectsOfCourse = async (req: express.Request, res: express.
         const { course } = req.query as { course: string }
 
         if (await checkIfCourseExists(course)) {
-            const allProjects = await projects.find({ course })
+            const allProjects = await projects.find({ course }).sort({ createdAt: -1 })
+            res.status(STATUS_CODES.OK).json(
+                {
+                    "projects": allProjects
+                }
+            )
+        }
+        else {
+            res.status(STATUS_CODES.NOT_FOUND).json({ msg: "Course not found" })
+        }
+    }
+    catch (err) {
+        res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({
+            "msg": err
+        })
+    }
+}
+
+// type paginationQueryType = {
+//     course: string,
+//     page: number,
+//     limit: number
+// }
+export const getPaginatedProjects = async (req: express.Request, res: express.Response) => {
+    try {
+        const { course, page, limit } = req.query as any
+
+        if (await checkIfCourseExists(course)) {
+            const allProjects = await projects.find({ course }).sort({ createdAt: -1 }).skip((page - 1) * limit).limit(limit)
             res.status(STATUS_CODES.OK).json(
                 {
                     "projects": allProjects

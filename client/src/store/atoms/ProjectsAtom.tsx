@@ -1,4 +1,4 @@
-import { atom, selector } from "recoil"
+import { atom } from "recoil"
 // import axios from "axios"
 
 // import { API_URL } from "../../App"
@@ -35,6 +35,11 @@ export type ProjectType = {
 //         return response.data.projects as ProjectType[];
 //     }
 // });
+
+export const projectsCountAtom = atom<number>({
+    key: "projectsCountAtom",
+    default: 0
+});
 
 export const projectsAtom = atom<ProjectType[]>({
     key: "projectsAtom",

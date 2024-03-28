@@ -3,27 +3,33 @@ import { useEffect } from "react"
 import { useRecoilState } from "recoil"
 import axios from "axios"
 
-import { projectsAtom } from "../../store/atoms/ProjectsAtom"
+import { projectsCountAtom } from "../../store/atoms/ProjectsAtom"
 import { API_URL } from "../../App"
-import ProjectCard from "../../components/projects/ProjectCard"
+// import ProjectCard from "../../components/projects/ProjectCard"
 import BackButton from "../../components/selection/BackButton"
+import PaginatedProjects from "./PaginatedProjects"
+
 
 export default function () {
-    const { course } = useParams()
+    const { course } = useParams() as { course: string }
     // const location = useLocation()
 
-    const [projects, setProjects] = useRecoilState(projectsAtom)
+    const [projectsCount, setProjectsCount] = useRecoilState(projectsCountAtom)
+
+    // const [projects, setProjects] = useRecoilState(projectsAtom)
+
 
     useEffect(() => {
-        const fetchProjects = async () => {
+        const fetchProjectsCount = async () => {
             try {
-                const response = await axios.get(API_URL + "/project/get-all-projects-of-course", {
+                const response = await axios.get(API_URL + "/project/get-projects-count", {
                     params: {
                         course
                     }
                 });
                 if (response.status === 200) {
-                    setProjects(response.data.projects)
+                    // console.log(response.data.count)
+                    setProjectsCount(response.data.count)
                 }
                 else {
                     console.error(response.data.error)
@@ -33,26 +39,58 @@ export default function () {
                 console.error(error)
             }
         }
-        fetchProjects()
+        fetchProjectsCount()
 
         return () => {
-            setProjects([])
+            setProjectsCount(0)
         }
-    }, [course])
+    }, [])
+
+    // useEffect(() => {
+    //     const fetchProjects = async () => {
+    //         try {
+    //             const response = await axios.get(API_URL + "/project/get-all-projects-of-course", {
+    //                 params: {
+    //                     course
+    //                 }
+    //             });
+    //             if (response.status === 200) {
+    //                 setProjects(response.data.projects)
+    //             }
+    //             else {
+    //                 console.error(response.data.error)
+    //             }
+    //         }
+    //         catch (error) {
+    //             console.error(error)
+    //         }
+    //     }
+    //     fetchProjects()
+
+    //     return () => {
+    //         setProjects([])
+    //     }
+    // }, [course])
 
     return <div>
         {/* <AnnouncementBar /> */}
         <div className="text-center text-2xl">{course} Projects</div>
         <div className="m-6"></div>
         <BackButton title={"Course"} location={"/"} />
-        <div className="custom:flex custom:justify-center custom:items-center">
+
+        <div className="flex w-full justify-center items-center my-4">
+            <div>{projectsCount} Available</div>
+        </div>
+
+        <PaginatedProjects course={course} itemsPerPage={9} />
+        {/* <div className="custom:flex custom:justify-center custom:items-center">
             <div className="custom:flex custom:flex-wrap custom:justify-start custom:items-center">
                 {
-                    projects.map((project, index) => {
+                    projects.map((project) => {
                         return <ProjectCard key={project.projectId} projectId={project.projectId} title={project.title} type={project.type} partner={project.partner} price={project.price} tags={project.tags} />
                     })
                 }
             </div>
-        </div>
+        </div> */}
     </div>
 }

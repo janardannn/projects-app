@@ -25,11 +25,11 @@ export const createError = async (req: express.Request, res: express.Response) =
         const issueId = sha256(username + type + description + url)
 
         const newError = new errorsAndFeatures({
+            issueId,
             username,
             type: "error",
             description,
             url,
-            issueId,
             resolved: false
         })
 
@@ -53,11 +53,11 @@ export const createFeature = async (req: express.Request, res: express.Response)
         const issueId = sha256(username + type + description + url)
 
         const newFeature = new errorsAndFeatures({
+            issueId,
             username,
             type: "feature",
             description,
             url,
-            issueId,
             resolved: false
         })
 
