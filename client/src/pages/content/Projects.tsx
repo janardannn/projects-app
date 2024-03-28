@@ -76,13 +76,16 @@ export default function () {
         {/* <AnnouncementBar /> */}
         <div className="text-center text-2xl">{course} Projects</div>
         <div className="m-6"></div>
-        <BackButton title={"Course"} location={"/"} />
 
-        <div className="flex w-full justify-center items-center my-4">
-            <div>{projectsCount} Available</div>
+        <div className="max-w-[80vw]">
+            <BackButton title={"Course"} location={"/"} />
+
+            <div className="flex w-full justify-center items-center my-4">
+                <div>{projectsCount} Total Available</div>
+            </div>
+
+            <PaginatedProjects course={course} itemsPerPage={9} />
         </div>
-
-        <PaginatedProjects course={course} itemsPerPage={9} />
         {/* <div className="custom:flex custom:justify-center custom:items-center">
             <div className="custom:flex custom:flex-wrap custom:justify-start custom:items-center">
                 {

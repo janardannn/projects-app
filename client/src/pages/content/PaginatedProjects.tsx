@@ -30,7 +30,7 @@ export default function ({ course, itemsPerPage }: { course: string, itemsPerPag
                     }
                 });
                 if (response.status === 200) {
-                    console.log(response.data.projects)
+                    // console.log(response.data.projects)
                     setProjects(response.data.projects)
                 }
                 else {
