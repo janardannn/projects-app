@@ -1,4 +1,7 @@
-import { useNavigate } from "react-router-dom"
+import { useState } from "react";
+import axios from "axios";
+
+import { API_URL } from "../../App";
 import Modal from "./Modal";
 
 export const errorSvg = (size: number) => {
@@ -37,11 +40,86 @@ export const errorSvg = (size: number) => {
 
 
 export default function () {
-    // const navigate = useNavigate()
 
-    // const handleClick = () => {
-    //     <Modal title="Report An Error" body="None" url={window.location.href} />
-    // }
+    const [errorReport, setErrorReport] = useState<{
+        username: string;
+        type: string;
+        description: string;
+        url: string;
+    }>({
+        username: "diksha",
+        type: "error",
+        description: "",
+        url: ""
+    })
+
+    const setUrl = () => {
+        setErrorReport({ ...errorReport, url: window.location.href })
+    }
+
+    const onErrorChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        console.log(e.target.value)
+        setErrorReport({ ...errorReport, description: e.target.value })
+    }
+
+    const [loader, setLoader] = useState(false)
+    const [message, setMessage] = useState<{
+        status: boolean,
+        type: "failed" | "success",
+        message: string
+    }>({
+        status: false,
+        type: "success",
+        message: ""
+    })
+
+    const clearMessage = () => {
+        setMessage({
+            status: false,
+            type: "success",
+            message: ""
+        })
+    }
+
+    const handleSubmit = async (e: React.MouseEvent) => {
+        console.log("Error Report: ", errorReport)
+
+        if (errorReport.description.trim().length < 15) {
+            setMessage({
+                status: true,
+                type: "failed",
+                message: "Error report cannot be empty or less than 15 characters"
+            })
+            setErrorReport({ ...errorReport, description: errorReport.description.trim() })
+            return
+        }
+
+        e.preventDefault()
+        try {
+            setLoader(true)
+
+            // // 5 secs delay
+            // await new Promise(resolve => setTimeout(resolve, 5000))
+
+            await axios.post(`${API_URL}/error-feature/create-error`, errorReport)
+            setLoader(false)
+            setMessage({
+                status: true,
+                type: "success",
+                message: "Error reported successfully"
+            })
+            setErrorReport({ ...errorReport, description: "" })
+        }
+        catch (err) {
+            console.log("Error: ", err)
+            setLoader(false)
+            setMessage({
+                status: true,
+                type: "failed",
+                message: "Error reporting failed"
+            })
+        }
+    }
 
     return <button>
         <div className="flex items-center border rounded-md px-2 hover:bg-orange-700 ">
@@ -49,7 +127,12 @@ export default function () {
                 {/* <img src={Error} className="w-[30px] lg:w-[40px] rounded-md" /> */}
                 {errorSvg(25)}
             </div>
-            <Modal type="error" title="Report An Error" url={window.location.href} />
+            <Modal type="error" title="Report An Error" setUrl={setUrl} values={
+                {
+                    description: errorReport.description,
+                    url: errorReport.url
+                }
+            } setValue={onErrorChange} loader={loader} error={message} clearError={clearMessage} handleSubmit={handleSubmit} />
         </div>
     </button>
 }

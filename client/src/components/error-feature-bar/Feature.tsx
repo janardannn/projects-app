@@ -1,4 +1,7 @@
-import { useNavigate } from "react-router-dom"
+import React, { useState } from "react";
+import axios from "axios";
+
+import { API_URL } from "../../App";
 import Modal from "./Modal";
 
 export const featureSvg = (size: number) => {
@@ -37,11 +40,86 @@ export const featureSvg = (size: number) => {
     );
 }
 export default function () {
-    // const navigate = useNavigate()
 
-    // const handleClick = () => {
-    //     navigate("/request-feature")
-    // }
+    const [featureSuggestion, setFeatureSuggestion] = useState<{
+        username: string;
+        type: string;
+        description: string;
+        url: string;
+    }>({
+        username: "diksha",
+        type: "feature",
+        description: "",
+        url: ""
+    })
+
+    const setUrl = () => {
+        setFeatureSuggestion({ ...featureSuggestion, url: window.location.href })
+    }
+
+    const onFeatureSuggestionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        console.log(e.target.value)
+        setFeatureSuggestion({ ...featureSuggestion, description: e.target.value })
+    }
+
+    const [loader, setLoader] = useState(false)
+    const [message, setMessage] = useState<{
+        status: boolean,
+        type: "failed" | "success",
+        message: string
+    }>({
+        status: false,
+        type: "success",
+        message: ""
+    })
+
+    const clearMessage = () => {
+        setMessage({
+            status: false,
+            type: "success",
+            message: ""
+        })
+    }
+
+    const handleSubmit = async (e: React.MouseEvent) => {
+        console.log("Feature Suggestion: ", featureSuggestion)
+
+        if (featureSuggestion.description.trim().length < 15) {
+            setMessage({
+                status: true,
+                type: "failed",
+                message: "Feature suggestion cannot be empty or less than 15 characters"
+            })
+            setFeatureSuggestion({ ...featureSuggestion, description: featureSuggestion.description.trim() })
+            return
+        }
+
+        e.preventDefault()
+        try {
+            setLoader(true)
+
+            // // 5 secs delay
+            // await new Promise(resolve => setTimeout(resolve, 5000))
+
+            await axios.post(`${API_URL}/error-feature/create-feature`, featureSuggestion)
+            setLoader(false)
+            setMessage({
+                status: true,
+                type: "success",
+                message: "Feature suggestion submitted successfully"
+            })
+            setFeatureSuggestion({ ...featureSuggestion, description: "" })
+        }
+        catch (error) {
+            console.log("Error: ", error)
+            setLoader(false)
+            setMessage({
+                status: true,
+                type: "failed",
+                message: "Failed to submit the feature suggestion"
+            })
+        }
+    }
 
     return <button>
         <div className="flex items-center border rounded-md px-2 hover:bg-green-700 ">
@@ -49,7 +127,12 @@ export default function () {
                 {/* <img src={Feature} className="w-[30px] lg:w-[40px] rounded-md" /> */}
                 {featureSvg(25)}
             </div>
-            <Modal type="feature" title="Suggest a feature" url={window.location.href} />
+            <Modal type="feature" title="Suggest a feature" setUrl={setUrl} values={
+                {
+                    description: featureSuggestion.description,
+                    url: featureSuggestion.url
+                }
+            } setValue={onFeatureSuggestionChange} loader={loader} error={message} clearError={clearMessage} handleSubmit={handleSubmit} />
         </div>
     </button>
 }

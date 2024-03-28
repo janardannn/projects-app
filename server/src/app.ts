@@ -12,6 +12,7 @@ import { projectsModel } from './models/projects.model';
 import { tagsModel } from './models/tags.model';
 import { usersModel } from './models/users.model';
 import { announcementModel } from './models/announcement.model';
+import { errorsAndFeaturesModel } from './models/errors-features.model';
 
 // import middlewares
 
@@ -20,6 +21,7 @@ import courseRoutes from './routes/courses.routes';
 import projectRoutes from './routes/projects.routes';
 import tagRoutes from './routes/tags.routes';
 import announcementRoutes from './routes/announcements.routes';
+import errorFeaturesRoutes from './routes/error-features.routes';
 
 // env variables
 const PORT = process.env.PORT || 3000;
@@ -61,6 +63,7 @@ const projects = projectsModel
 const tags = tagsModel
 const users = usersModel
 const announcements = announcementModel
+const errorsAndFeatures = errorsAndFeaturesModel
 
 
 app.get('/', (req: express.Request, res: express.Response) => {
@@ -75,6 +78,7 @@ app.use("/course", courseRoutes)
 app.use("/project", projectRoutes)
 app.use("/tag", tagRoutes)
 app.use("/admin/announcement", announcementRoutes)
+app.use("/error-feature", errorFeaturesRoutes)
 
 // test admin routes
 

@@ -1,4 +1,4 @@
-import { DNA } from "react-loader-spinner"
+import { DNA, InfinitySpin } from "react-loader-spinner"
 
 const Loaders:
     {
@@ -20,6 +20,10 @@ const Loaders:
         ariaLabel="dna-loading"
         wrapperStyle={{}}
         wrapperClass="dna-wrapper"
+    />,
+    "error": <InfinitySpin
+        width="100"
+        color="#4fa94d"
     />,
     "product": <></>,
     "search": <></>

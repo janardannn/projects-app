@@ -1,11 +1,9 @@
 import Error from "./Error";
 import Feature from "./Feature";
-import Modal from "./Modal";
 
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
 export default function () {
-    const location = useLocation();
 
     return (
         <div className="flex justify-center">
