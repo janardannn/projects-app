@@ -8,6 +8,7 @@ export type PhaseType = {
 
 export type ProjectType = {
     projectId: string,
+    pIDHash: string,
     title: string,
     description: string,
     type: string,

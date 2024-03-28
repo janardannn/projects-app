@@ -1,4 +1,4 @@
-const githubSvg = (size: number) => {
+export const githubSvg = (size: number) => {
     return (
         <svg
             width={size}

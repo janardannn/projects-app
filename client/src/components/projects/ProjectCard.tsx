@@ -53,8 +53,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projectId, title, type, partn
     }
 
     return <div className="m-4">
-        <button onClick={handleProjectClick}>
-            <div className="w-[327px] md:w-[350px] border rounded-md mb-8 p-2 hover:scale-[1.025] project-card-bg-2">
+        <div onClick={handleProjectClick}>
+            <div className="w-[327px] md:w-[350px] hover:border rounded-md mb-8 p-2 hover:scale-[1.025] project-card-bg-2">
                 <div className="text-left text-base mb-6 h-[135px]">{title}</div>
                 <div className={typeCard(type)}>{type}</div>
                 <div className="flex justify-between mb-4 pr-2 project-card-bg rounded-md p-2">
@@ -85,7 +85,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projectId, title, type, partn
                     </div>
                 </div>
             </div>
-        </button>
+        </div>
     </div>
 }
 

@@ -8,6 +8,11 @@ const announcementSchema = new mongoose.Schema({
     message: {
         type: String,
         required: true,
+    },
+    announcementId: {
+        type: String,
+        required: true,
+        unique: true
     }
 }, {
     timestamps: true

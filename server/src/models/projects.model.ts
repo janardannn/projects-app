@@ -15,6 +15,11 @@ const projectSchema = new mongoose.Schema<ProjectType>({
         required: true,
         unique: true,
     },
+    pIDHash: {
+        type: String,
+        required: true,
+        unique: true,
+    },
     title: { type: String, required: true },
     description: { type: String, required: true },
     type: { type: String, required: true },

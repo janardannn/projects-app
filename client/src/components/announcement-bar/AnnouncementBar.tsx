@@ -23,6 +23,9 @@ const closeButtonSvg = (size: number) => (
 
 export default function AnnouncementBar() {
 
+    const bannerId = localStorage.getItem("bannerId")
+    const bannerVisible = localStorage.getItem("bannerVisible")
+
     const [isClosed, setIsClosed] = useState(false)
     const [announcement, setAnnouncement] = useState<Announcement>({
         type: "",
@@ -34,9 +37,14 @@ export default function AnnouncementBar() {
     useEffect(() => {
         const fetchAnnouncement = async () => {
             try {
-                const response = await axios.get(API_URL + "/admin/announcements")
+                const response = await axios.get(API_URL + "/admin/announcement/get-announcements")
                 console.log(response.data)
                 setAnnouncement(response.data)
+
+                if (response.data.announcementId != bannerId) {
+                    localStorage.setItem("bannerId", response.data.announcementId)
+                    localStorage.setItem("bannerVisible", "true")
+                }
             } catch (error) {
                 console.error(error)
             }
@@ -59,15 +67,17 @@ export default function AnnouncementBar() {
 
     const handleClose = () => {
         setIsClosed(true)
+        localStorage.setItem("bannerVisible", "false")
     }
 
     if (isClosed) {
         return <></>
     }
 
-    if (announcement && announcement.type && announcement.message !== "") {
+    if (announcement && announcement.type && announcement.message !== "" && bannerVisible === "true") {
         return <div className="flex justify-center mt-12">
             <div className={`flex justify-between items-center p-2 ${bannerColor}`}>
+                <div className="mr-2">{announcement.type}:</div>
                 <div className="w-[60vw] text-left">
                     {announcement.message}
                 </div>

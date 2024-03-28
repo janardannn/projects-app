@@ -19,6 +19,7 @@ import { announcementModel } from './models/announcement.model';
 import courseRoutes from './routes/courses.routes';
 import projectRoutes from './routes/projects.routes';
 import tagRoutes from './routes/tags.routes';
+import announcementRoutes from './routes/announcements.routes';
 
 // env variables
 const PORT = process.env.PORT || 3000;
@@ -73,24 +74,9 @@ app.get('/', (req: express.Request, res: express.Response) => {
 app.use("/course", courseRoutes)
 app.use("/project", projectRoutes)
 app.use("/tag", tagRoutes)
-
+app.use("/admin/announcement", announcementRoutes)
 
 // test admin routes
-app.get('/admin/announcements', async (req: express.Request, res: express.Response) => {
-    const announcements = await announcementModel.find()
-    res.status(200).json({
-        "type": announcements[0].type,
-        "message": announcements[0].message
-    })
-})
-app.post('/admin/announcements', async (req: express.Request, res: express.Response) => {
-    const { type, message } = req.body
-    const newAnnouncement = new announcementModel({ type, message })
-    await newAnnouncement.save()
-    res.status(200).json({
-        msg: "Announcement created successfully"
-    })
-})
 
 app.listen(PORT, () => {
     console.log('Server is running on port ' + PORT);

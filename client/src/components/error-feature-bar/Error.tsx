@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
+import Modal from "./Modal";
 
-const errorSvg = (size: number) => {
+export const errorSvg = (size: number) => {
     return (
         <svg
             viewBox="0 0 24 24"
@@ -36,21 +37,19 @@ const errorSvg = (size: number) => {
 
 
 export default function () {
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
-    const handleClick = () => {
-        navigate("/report-error")
-    }
+    // const handleClick = () => {
+    //     <Modal title="Report An Error" body="None" url={window.location.href} />
+    // }
 
-    return <button onClick={handleClick}>
+    return <button>
         <div className="flex items-center border rounded-md px-2 hover:bg-orange-700 ">
             <div className="mr-1">
                 {/* <img src={Error} className="w-[30px] lg:w-[40px] rounded-md" /> */}
                 {errorSvg(25)}
             </div>
-            <div>
-                Report an Error
-            </div>
+            <Modal type="error" title="Report An Error" url={window.location.href} />
         </div>
     </button>
 }

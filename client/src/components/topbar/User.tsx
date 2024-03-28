@@ -29,7 +29,7 @@ const User: React.FC<UserProps> = function ({ username }) {
     }
 
     return (
-        <button className="bg-slate-800 py-1 px-4 rounded-md hover:border" onClick={handleUserClick}>
+        <button className="bg-slate-700 py-1 px-4 rounded-md hover:border" onClick={handleUserClick}>
             <div className="flex">
                 <div className="h-[30px] flex items-end mr-2 pb-1">{UserSvg(16.1)}</div>
                 <div className="h-[30px] flex items-end">{username}</div>

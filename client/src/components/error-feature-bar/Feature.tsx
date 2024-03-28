@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
+import Modal from "./Modal";
 
-const featureSvg = (size: number) => {
+export const featureSvg = (size: number) => {
     return (
         <svg
             version="1.0"
@@ -36,21 +37,19 @@ const featureSvg = (size: number) => {
     );
 }
 export default function () {
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
-    const handleClick = () => {
-        navigate("/request-feature")
-    }
+    // const handleClick = () => {
+    //     navigate("/request-feature")
+    // }
 
-    return <button onClick={handleClick}>
+    return <button>
         <div className="flex items-center border rounded-md px-2 hover:bg-green-700 ">
             <div className="mr-1">
                 {/* <img src={Feature} className="w-[30px] lg:w-[40px] rounded-md" /> */}
                 {featureSvg(25)}
             </div>
-            <div>
-                Request a Feature
-            </div>
+            <Modal type="feature" title="Suggest a feature" url={window.location.href} />
         </div>
     </button>
 }

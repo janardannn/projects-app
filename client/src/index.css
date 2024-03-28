@@ -4,11 +4,11 @@
 
 @layer base {
   .project-card-bg {
-    background-color: rgba(31, 41, 55, 0.37);
+    background-color: rgba(36, 51, 71, 0.67);
   }
 
   .project-card-bg-2 {
-    background-color: rgba(36, 27, 40, 0.217);
+    background-color: rgba(72, 83, 99, 0.217);
   }
 
   .announcement-bar-alert {
@@ -37,8 +37,8 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  /* background-color: #242424; */
-  background-color: #151316;
+  background-color: #1b1a1a;
+  /* background-color: #151316; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

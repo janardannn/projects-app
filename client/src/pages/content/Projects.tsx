@@ -7,7 +7,6 @@ import { projectsAtom } from "../../store/atoms/ProjectsAtom"
 import { API_URL } from "../../App"
 import ProjectCard from "../../components/projects/ProjectCard"
 import BackButton from "../../components/selection/BackButton"
-import AnnouncementBar from "../../components/announcement-bar/AnnouncementBar"
 
 export default function () {
     const { course } = useParams()

@@ -1,6 +1,7 @@
 import express from "express"
 import mongoose from "mongoose"
-import md5 from "md5"
+// import md5 from "md5"
+const sha256 = require("js-sha256")
 
 import { projectsModel } from "../models/projects.model"
 import { checkIfCourseExists } from "./course.controller"
@@ -24,7 +25,8 @@ export const createProject = async (req: express.Request, res: express.Response)
 
     try {
         const { title, description, type, course, tags, price, partner, oneTime, phases } = req.body as ProjectType
-        const projectId = md5(title.toLowerCase())
+        const pIDHash = sha256(title + partner)
+        const projectId = pIDHash.slice(0, 10)
 
         if (await checkIfProjectExists(projectId)) {
             res.status(STATUS_CODES.BAD_REQUEST).json({ msg: "Project already exists" })
@@ -32,6 +34,7 @@ export const createProject = async (req: express.Request, res: express.Response)
         else {
             const newProject = new projects({
                 projectId,
+                pIDHash,
                 title,
                 description,
                 type,
