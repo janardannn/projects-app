@@ -15,6 +15,7 @@ import { announcementModel } from './models/announcement.model';
 import { errorsAndFeaturesModel } from './models/errors-features.model';
 
 // import middlewares
+import { LogUserActivity } from './middlewares/logging';
 
 // import routes
 import courseRoutes from './routes/courses.routes';
@@ -41,7 +42,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-// app.use(LogUserActivity);
+app.use(LogUserActivity);
 
 try {
     mongoose.connect(MONGODB_URL)
